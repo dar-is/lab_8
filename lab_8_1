@@ -1,0 +1,80 @@
+
+#include <stdio.h>
+#include <math.h>
+
+// F1(x)
+double fa(double x) {
+    double y;
+    if (x <= 3)
+        y = x * x - 3 * x + 9;
+    else
+        y = 1.0 / (x * x * x + 3);
+    return y;
+}
+
+// F2(x) = x * e^(sin(x^2))
+double fb(double x) {
+    double y;
+    y = x * exp(sin(x * x));
+    return y;
+}
+
+int main() {
+    setlocale(LC_All,"RUS");
+    double x;
+    int choice;
+
+    printf("Введите x: ");
+    scanf("%lf", &x);
+
+    do {
+        printf("\n===== МЕНЮ =====\n");
+        printf("1. Значение F1(x)\n");
+        printf("2. Значение F2(x)\n");
+        printf("3. Произведение F1(x)*F2(x)\n");
+        printf("4. Разность квадратов F1(x)^2 - F2(x)^2\n");
+        printf("5. Удвоенная сумма 2*(F1(x)+F2(x))\n");
+        printf("6. Вывести всё сразу\n");
+        printf("7. Изменить x\n");
+        printf("0. Выход\n");
+        printf("Ваш выбор: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("fa(x)=%lf\n", fa(x));
+                break;
+            case 2:
+                printf("fb(x)=%lf\n", fb(x));
+                break;
+            case 3:
+                printf("произведение = %lf\n", fa(x) * fb(x));
+                break;
+            case 4:
+                printf("разность квадратов = %lf\n",
+                       fa(x) * fa(x) - fb(x) * fb(x));
+                break;
+            case 5:
+                printf("удвоенная сумма = %lf\n", 2 * (fa(x) + fb(x)));
+                break;
+            case 6:
+                printf("fa(x)=%lf , fb(x)=%lf\n", fa(x), fb(x));
+                printf("произведение = %lf, разность квадратов = %lf, удвоенная сумма = %lf\n",
+                       fa(x) * fb(x),
+                       fa(x) * fa(x) - fb(x) * fb(x),
+                       2 * (fa(x) + fb(x)));
+                break;
+            case 7:
+                printf("Введите новое x: ");
+                scanf("%lf", &x);
+                break;
+            case 0:
+                printf("Выход.\n");
+                break;
+            default:
+                printf("Неверный пункт меню!\n");
+        }
+    } while (choice != 0);
+
+    return 0;
+}
