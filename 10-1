@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <math.h>
+
+double f1(double x)
+{
+    double y;
+
+    if (x <= 3)
+        y = x * x - 3 * x + 9;
+    else
+        y = 1.0 / (x * x * x + 3);
+
+    return y;
+}
+
+double f2(double x)
+{
+    double y;
+
+    y = x * exp(sin(x * x));
+
+    return y;
+}
+
+int main()
+{
+    double x, a, b;
+    int n;
+
+    do
+    {
+        printf("\nВведите x: ");
+        scanf("%lf", &x);
+
+        a = f1(x);
+        b = f2(x);
+
+        printf("\n1 - Значения функций");
+        printf("\n2 - Произведение");
+        printf("\n3 - Разность квадратов");
+        printf("\n4 - Удвоенная сумма");
+        printf("\n0 - Выход");
+        printf("\nВыберите действие: ");
+        scanf("%d", &n);
+
+        switch (n)
+        {
+            case 1:
+                printf("f1(x) = %lf\n", a);
+                printf("f2(x) = %lf\n", b);
+                break;
+
+            case 2:
+                printf("Произведение = %lf\n", a * b);
+                break;
+
+            case 3:
+                printf("Разность квадратов = %lf\n",
+                       a * a - b * b);
+                break;
+
+            case 4:
+                printf("Удвоенная сумма = %lf\n",
+                       2 * (a + b));
+                break;
+
+            case 0:
+                printf("Выход из программы\n");
+                break;
+
+            default:
+                printf("Неверный выбор\n");
+        }
+
+    } while (n != 0);
+
+    return 0;
+}
