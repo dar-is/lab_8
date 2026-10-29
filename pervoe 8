@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main()
+{
+    int row, col;
+
+    for (row = 1; row <= 9; row++)
+    {
+        for (col = 1; col <= 9; col++)
+            printf("%5d", row * col);
+
+        printf("\n");
+    }
+
+    return 0;
+}
+#include <stdio.h>
+
+int main()
+{
+    int row, col;
+
+    for (row = 1; row <= 9; row++)
+    {
+        for (col = 1; col <= row; col++)
+            printf("%5d", row * col);
+
+        printf("\n");
+    }
+
+    return 0;
+}
+#include <stdio.h>
+
+int main()
+{
+    int row, col;
+
+    for (row = 5; row >= 1; row--)
+    {
+        for (col = 1; col <= row; col++)
+            printf("%5d", 1);
+
+        printf("\n");
+    }
+
+    return 0;
+}
