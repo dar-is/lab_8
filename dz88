@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+float area_round(float r)
+{
+    return 3.14 * r * r;
+}
+
+void draw_round(char a)
+{
+    int i, j, r;
+
+    printf("Введите радиус: ");
+    scanf("%d", &r);
+
+    for (i = -r; i <= r; i++)
+    {
+        for (j = -r; j <= r; j++)
+        {
+            if (i * i + j * j <= r * r)
+                printf("%c", a);
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int n;
+    float r;
+
+    do
+    {
+        printf("\n1 - Рассчитать площадь круга");
+        printf("\n2 - Определение круга");
+        printf("\n3 - Нарисовать круг");
+        printf("\n0 - Выход");
+        printf("\nВыберите действие: ");
+        scanf("%d", &n);
+
+        switch (n)
+        {
+            case 1:
+                printf("Введите радиус: ");
+                scanf("%f", &r);
+                printf("Площадь круга = %.2f\n", area_round(r));
+                break;
+
+            case 2:
+                printf("Круг — часть плоскости, ограниченная окружностью.\n");
+                break;
+
+            case 3:
+                draw_round('*');
+                break;
+
+            case 0:
+                printf("Выход.\n");
+                break;
+
+            default:
+                printf("Неверный выбор.\n");
+        }
+
+    } while (n != 0);
+
+    return 0;
+}
