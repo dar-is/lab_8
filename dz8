@@ -1,0 +1,170 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[1000], again;
+    int i, n, d;
+    int count3, countLast, even, greater5;
+    int sumOdd, sum7, sumEven;
+    int equal, firstHalf, secondHalf;
+    int sumOddPos, sumEvenPos;
+    long long product, p2;
+
+    do
+    {
+        printf("Введите целое число: ");
+        scanf("%999s", s);
+
+        n = strlen(s);
+
+        if (s[0] == '-')
+        {
+            printf("Введите положительное число или ноль.\n");
+            continue;
+        }
+
+        count3 = 0;
+        countLast = 0;
+        even = 0;
+        greater5 = 0;
+        sumOdd = 0;
+        sum7 = 0;
+        sumEven = 0;
+        equal = 0;
+        firstHalf = 0;
+        secondHalf = 0;
+        sumOddPos = 0;
+        sumEvenPos = 0;
+        product = 1;
+
+        for (i = 0; i < n; i++)
+        {
+            d = s[i] - '0';
+
+            /* 1. Количество цифр 3 */
+            if (d == 3)
+                count3++;
+
+            /* 2. Количество повторений последней цифры */
+            if (d == s[n - 1] - '0')
+                countLast++;
+
+            /* 3. Количество четных цифр */
+            if (d % 2 == 0)
+                even++;
+
+            /* 4. Количество цифр больше 5 */
+            if (d > 5)
+                greater5++;
+
+            /* 5. Сумма нечетных цифр */
+            if (d % 2 != 0)
+                sumOdd += d;
+
+            /* 6. Сумма цифр больше или равных 7 */
+            if (d >= 7)
+                sum7 += d;
+
+            /* 7. Произведение всех цифр, кроме 0 */
+            if (d != 0)
+                product *= d;
+
+            /* 9. Сумма четных цифр, кроме последней */
+            if (i != n - 1 && d % 2 == 0)
+                sumEven += d;
+
+            /* 10. Рядом расположенные одинаковые цифры */
+            if (i > 0 && s[i] == s[i - 1])
+                equal++;
+
+            /* 11. Суммы первой и второй половин числа */
+            if (i < n / 2)
+                firstHalf += d;
+
+            if (i >= (n + 1) / 2)
+                secondHalf += d;
+
+            /* 12. Суммы цифр нечетных и четных разрядов */
+            if ((n - i) % 2 == 1)
+                sumOddPos += d;
+            else
+                sumEvenPos += d;
+        }
+
+        /* 8. Произведение предпоследней и второй цифры */
+        if (n >= 2)
+            p2 = (s[n - 2] - '0') * (s[1] - '0');
+
+        printf("\nРезультаты:\n");
+
+        printf("1. Количество цифр 3: %d\n", count3);
+        printf("2. Повторений последней цифры: %d\n", countLast);
+        printf("3. Количество четных цифр: %d\n", even);
+        printf("4. Количество цифр больше 5: %d\n", greater5);
+        printf("5. Сумма нечетных цифр: %d\n", sumOdd);
+        printf("6. Сумма цифр >= 7: %d\n", sum7);
+        printf("7. Произведение цифр без нулей: %lld\n", product);
+
+        if (n >= 2)
+            printf("8. Произведение предпоследней и второй цифры: %lld\n", p2);
+        else
+            printf("8. Для одной цифры вычислить нельзя\n");
+
+        printf("9. Сумма четных цифр без последней: %d\n", sumEven);
+        printf("10. Количество одинаковых соседних пар: %d\n", equal);
+
+        if (firstHalf == secondHalf)
+            printf("11. Суммы половин равны\n");
+        else
+            printf("11. Суммы половин не равны\n");
+
+        printf("12. Произведение сумм разрядов: %d\n",
+               sumOddPos * sumEvenPos);
+
+        printf("Продолжить? (y/n): ");
+        scanf(" %c", &again);
+
+    } while (again == 'y' || again == 'Y');
+
+    return 0;
+}
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+    char a;
+    int again;
+
+    do
+    {
+        printf("Введите символ: ");
+        scanf(" %c", &a);
+
+        printf("Введите размер треугольника: ");
+        scanf("%d", &n);
+
+        for (i = 1; i <= n; i++)
+        {
+            for (j = 1; j <= n; j++)
+            {
+                if (i == n || j == 1 || i == j)
+                    printf("%c", a);
+                else
+                    printf(" ");
+            }
+
+            printf("\n");
+        }
+
+        printf("Продолжить? (1 - да, 0 - нет): ");
+        scanf("%d", &again);
+
+    } while (again != 0);
+
+    return 0;
+}
